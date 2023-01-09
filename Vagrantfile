@@ -14,12 +14,10 @@ Vagrant.configure("2") do |config|
     node.vm.network "private_network", ip: "192.168.56.10"
   end
 
-  (1..2).each do |i|
-    config.vm.define "worker-#{i}" do |node|
-      node.vm.hostname = "worker-#{i}"
-      node.vm.network "private_network", ip: "192.168.56.#{10 + i}"
-    end
-  end
+  config.vm.define "worker-1" do |node|
+     node.vm.hostname = "worker-1"
+     node.vm.network "private_network", ip: "192.168.56.11"
+   end
 
   config.vm.provision "shell", name: "install-essential-tools", path: "install-essential-tools.sh", privileged: false
   config.vm.provision "shell", name: "allow-bridge-nf-traffic", path: "allow-bridge-nf-traffic.sh", privileged: false
